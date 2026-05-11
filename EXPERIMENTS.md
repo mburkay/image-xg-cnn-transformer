@@ -267,12 +267,12 @@ Interpretation:
 
 ## Rendering Protocol Audit And Re-Render
 
-The mixed 128 result (small ROC-AUC gain, PR-AUC drop) triggered a triage of
-three suspected bugs before running more ablations. Diagnostic script:
-`scripts/diagnostics_rendering_protocol.py`. Visual diagnostic figure:
-`outputs/figures/bug2_sigma_comparison.png`.
+The mixed 128 result (small ROC-AUC gain, PR-AUC drop) triggered an audit of
+three suspected issues before running more ablations. Diagnostic script:
+`scripts/diagnostics_rendering_protocol.py`. The script regenerates the
+visual comparison at `outputs/figures/sigma_protocol_comparison.png`.
 
-### Bug 1 — Penalty filter (false alarm)
+### Check 1 — Penalty filter (false alarm)
 
 The filter is correct. Field is `shot_type` and value is exactly `Penalty`
 (StatsBomb canonical). The check
@@ -280,7 +280,7 @@ The filter is correct. Field is `shot_type` and value is exactly `Penalty`
 `src/xg_project/image_dataset.py:36-37` matches the data.
 
 The reason the renderable dataset only contained 171 penalties (not ~1300) is
-not a filter bug. It is a dataset characteristic:
+not a filter issue. It is a dataset characteristic:
 
 | Stage | Total | Open Play | Free Kick | Penalty | Other |
 |---|---:|---:|---:|---:|---:|
@@ -296,7 +296,7 @@ and complete.
 
 No code change required.
 
-### Bug 2 — Gaussian sigma scaling (real bug, fixed)
+### Check 2 — Gaussian sigma scaling (confirmed protocol mismatch, fixed)
 
 Confirmed by code reading and visual diagnostic:
 
@@ -312,8 +312,8 @@ Per-channel sum on the same shot ("energy" of the rendered signal):
 | Render | Attackers | Defenders | Goalkeeper | Shooter |
 |---|---:|---:|---:|---:|
 | 64x64, sigma=2.5 | 117.65 | 261.97 | 32.44 | 38.32 |
-| 128x128, sigma=2.5 (bug) | 117.66 | 274.45 | 37.46 | 39.22 |
-| 128x128, sigma=5.0 (fix) | 469.42 | 1046.39 | 125.32 | 152.15 |
+| 128x128, sigma=2.5 (mismatched protocol) | 117.66 | 274.45 | 37.46 | 39.22 |
+| 128x128, sigma=5.0 (pitch-equivalent protocol) | 469.42 | 1046.39 | 125.32 | 152.15 |
 
 The 4x ratio between sigma=2.5 and sigma=5.0 at 128x128 matches the analytical
 result: integral of a 2D Gaussian under amplitude=1 scales with sigma^2.
@@ -344,7 +344,7 @@ Re-rendered dataset:
 Visual confirmation: `outputs/figures/freeze_frame_preview_128_sigmafix.png`
 shows blobs at the same physical size as `freeze_frame_preview_64.png`.
 
-### Bug 3 — Architecture adaptation (false alarm)
+### Check 3 — Architecture adaptation (false alarm)
 
 Both architectures are already resolution-agnostic, confirmed by reading the
 model code in `src/xg_project/torch_models.py` and a forward smoke test:
@@ -406,22 +406,22 @@ Calibration on the test split:
 | Platt | 0.078936 | 0.274403 | 0.785772 | 0.313634 |
 | Isotonic | 0.079556 | 0.283066 | 0.783286 | 0.298550 |
 
-### CNN 128 sigma comparison (bug vs fix)
+### CNN 128 sigma comparison (mismatched vs pitch-equivalent protocol)
 
 | Model | sigma | Pitch sigma (pu) | Best Val AUC | Test ROC-AUC | PR-AUC | F1 (val-best) | Platt Brier | Iso PR-AUC |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | CNN 64 baseline | 2.5 px | 4.69 | 0.792723 | 0.788138 | 0.356864 | 0.397001 | 0.078193 | 0.336665 |
-| CNN 128 sigma=2.5 px (bug-state) | 2.5 px | 2.34 | 0.789989 | 0.789593 | 0.333353 | 0.399267 | 0.078106 | 0.322923 |
-| CNN 128 sigma=5.0 px (fix candidate) | 5.0 px | 4.69 | 0.778130 | 0.785772 | 0.313634 | 0.390824 | 0.078936 | 0.298550 |
+| CNN 128 sigma=2.5 px (mismatched protocol) | 2.5 px | 2.34 | 0.789989 | 0.789593 | 0.333353 | 0.399267 | 0.078106 | 0.322923 |
+| CNN 128 sigma=5.0 px (pitch-equivalent candidate) | 5.0 px | 4.69 | 0.778130 | 0.785772 | 0.313634 | 0.390824 | 0.078936 | 0.298550 |
 
 ### Honest interpretation
 
-The fix did not work. The sigma fix candidate underperforms the bug-state run on
+The pitch-equivalent candidate did not improve the result. It underperforms the mismatched-protocol run on
 every ranking and threshold-tuned metric. PR-AUC drops further from 0.3334 to
 0.3136 and is now below both 128 runs and the 64 baseline. Best validation AUC
 also drops by 0.012.
 
-So Bug 2 is real at the code level — sigma-in-pixels was indeed not scaling with
+So Check 2 confirms a protocol mismatch in the earlier rendering configuration — sigma-in-pixels was not scaling with
 image_size — but rescaling it to match the 64 baseline's pitch-equivalent
 sigma (~4.69 pu) is the wrong correction. Two consequences follow:
 
@@ -431,7 +431,7 @@ sigma (~4.69 pu) is the wrong correction. Two consequences follow:
    Apply the same physical sigma at 128x128 and the blobs visibly fuse and the
    model loses spatial detail.
 2. The PR-AUC drop from 64x64 (sigma=2.5 px) to 128x128 (sigma=2.5 px) is not
-   explained by sigma scaling. The triage hypothesis that this single bug
+   explained by sigma scaling. The triage hypothesis that this single issue
    caused the mixed 128 result is not supported by the data.
 
 What this means for the next steps:
@@ -454,10 +454,10 @@ mismatch) are already cleared earlier in this section.
 
 ## Sigma Sweep at 128
 
-After the sigma fix candidate (sigma=4.69 pu) underperformed, ran a five-point
+After the pitch-equivalent candidate (sigma=4.69 pu) underperformed, ran a five-point
 sigma sweep at 128x128 to find the resolution-appropriate value and isolate
 how much of the original 64 -> 128 PR-AUC drop is sigma-driven. Two of the
-points were already in hand (sigma=2.34 pu bug-state, sigma=4.69 pu fix). Three new
+points were already in hand (sigma=2.34 pu mismatched protocol, sigma=4.69 pu pitch-equivalent). Three new
 runs at sigma_pitch_units in {1.0, 2.0, 3.5}. All runs share hyperparameters with
 the existing 128 runs: 15 epochs, batch=64, lr=1e-4, MPS, seed=42, identical
 match-level splits.
@@ -476,7 +476,7 @@ Test split metrics at the validation-best checkpoint:
 Reading the table:
 
 - The best 128 sigma is around 2 pu. PR-AUC peaks at sigma=2.0 pu (0.3337) and
-  the previously-named "bug" sigma=2.34 pu is essentially tied (0.3334). Below
+  the previously-named "mismatched" sigma=2.34 pu is essentially tied (0.3334). Below
   2 pu the model overfits early (s1p0 best epoch is 6, with val AUC collapsing
   by epoch 13), and above 3 pu the model under-fits (s3p5 best epoch is 14 and
   still only 0.7833 val AUC).

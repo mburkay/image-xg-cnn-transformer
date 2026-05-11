@@ -32,9 +32,9 @@ def section(title: str) -> None:
 
 
 # -----------------------------------------------------------------------------
-# Bug 1 — Penalty filter
+# Check 1 — Penalty filter
 # -----------------------------------------------------------------------------
-section("Bug 1 — Penalty filter")
+section("Check 1 — Penalty filter")
 
 shots = pd.read_pickle(ROOT / "data/raw/shots.pkl")
 print(f"Total raw shots: {len(shots):,}")
@@ -71,9 +71,9 @@ for tag in ["shots_with_splits_64.pkl", "shots_with_splits_128_no_penalty.pkl"]:
         print(f"{tag}: rows={len(meta):,}, penalties={penalties_in_meta}")
 
 # -----------------------------------------------------------------------------
-# Bug 2 — Gaussian sigma scaling
+# Check 2 — Gaussian sigma scaling
 # -----------------------------------------------------------------------------
-section("Bug 2 — Gaussian sigma scaling")
+section("Check 2 — Gaussian sigma scaling")
 
 sample = renderable.iloc[0]
 freeze_frame = sample["freeze_frame"]
@@ -88,8 +88,8 @@ img_128_s5 = create_freeze_frame_image(freeze_frame, shooter_loc, image_size=(12
 
 print(f"Same shot rendered at three settings.")
 print(f"  64x64,  sigma=2.5 px  (~{2.5/64*120:.2f} pu on pitch length axis)")
-print(f"  128x128, sigma=2.5 px (~{2.5/128*120:.2f} pu on pitch length axis)  <- bug")
-print(f"  128x128, sigma=5.0 px (~{5.0/128*120:.2f} pu on pitch length axis)  <- fix candidate")
+print(f"  128x128, sigma=2.5 px (~{2.5/128*120:.2f} pu on pitch length axis)  <- mismatched protocol")
+print(f"  128x128, sigma=5.0 px (~{5.0/128*120:.2f} pu on pitch length axis)  <- pitch-equivalent candidate")
 
 # Sum over each channel as a coarse "energy" measure of the rendered signal.
 def chan_energy(img: np.ndarray) -> tuple[float, float, float, float]:
@@ -102,14 +102,14 @@ print(f"  128x128,s=2.5: {chan_energy(img_128_s25)}  <- much smaller than 64x64?
 print(f"  128x128,s=5.0: {chan_energy(img_128_s5)}")
 
 # Save side-by-side comparison.
-fig_path = ROOT / "outputs/figures/bug2_sigma_comparison.png"
+fig_path = ROOT / "outputs/figures/sigma_protocol_comparison.png"
 fig_path.parent.mkdir(parents=True, exist_ok=True)
 titles = ["Attackers", "Defenders", "Goalkeeper", "Shooter"]
 fig, axes = plt.subplots(3, 4, figsize=(16, 11))
 rows = [
     ("64x64, sigma=2.5", img_64_s25),
-    ("128x128, sigma=2.5 (BUG)", img_128_s25),
-    ("128x128, sigma=5.0 (FIX)", img_128_s5),
+    ("128x128, sigma=2.5 (MISMATCHED)", img_128_s25),
+    ("128x128, sigma=5.0 (PITCH-EQUIVALENT)", img_128_s5),
 ]
 for r, (label, img) in enumerate(rows):
     for c in range(4):
@@ -123,9 +123,9 @@ plt.close(fig)
 print(f"\nSaved diagnostic figure: {fig_path}")
 
 # -----------------------------------------------------------------------------
-# Bug 3 — Architecture adapts to input size
+# Check 3 — Architecture adapts to input size
 # -----------------------------------------------------------------------------
-section("Bug 3 — Architecture forward smoke test")
+section("Check 3 — Architecture forward smoke test")
 
 torch.manual_seed(0)
 for h, w in [(64, 64), (128, 128)]:
