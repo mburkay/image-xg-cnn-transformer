@@ -90,7 +90,7 @@ from the paper by URL.
 
 - [x] Every `% TODO` block in `main.tex` is filled (full first-draft prose).
 - [x] BibTeX entries resolved with no undefined cites; SoccerTransformer entry removed (not cited); Skor-xG metadata verified against the CVF proceedings.
-- [x] Final repository URL inserted in `\subsubsection*{Reproducibility.}` (currently a private GitHub repository; made public upon acceptance).
+- [x] Final repository URL inserted in `\subsubsection*{Reproducibility.}` (public GitHub repository).
 - [x] ORCID iD set; institute address (Sakarya University, Department of Computer Engineering) set.
 - [x] Page fit verified: 10-page PDF on A4 with content $\leq$ 9 pages and references on pages 9–10, matching MLSA 2026's "9 content pages + unlimited references" rule.
 - [x] Compile clean except for one minor `Overfull \hbox` (8.18 pt) in the Introduction "Positioning" paragraph and the `amsmath \vec` notice from the LNCS class; both are cosmetic and typical for LNCS submissions.

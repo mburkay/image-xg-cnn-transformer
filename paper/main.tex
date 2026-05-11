@@ -59,8 +59,8 @@ A $2{\times}2$ $\sigma{\times}$\,penalty ablation shows that penalty
 inclusion has near-zero main effect on PR-AUC and a strong
 $\sigma$-conditional interaction; the apparent penalty bias seen in
 cross-protocol comparisons is therefore not a single-variable effect.
-We prepare a PyTorch reference implementation with explicit
-pitch-unit sigma, to be released upon acceptance.
+We release a PyTorch reference implementation with explicit
+pitch-unit sigma.
 
 \keywords{Expected Goals \and Football Analytics \and CNN \and Transformer
 \and Image-Based xG \and StatsBomb.}
@@ -284,7 +284,7 @@ seed. The $2{\times}2$ ablation (Section~\ref{sec:2x2}) factorially
 isolates $\sigma$ and penalty handling at $64{\times}64$. Full per-cell
 numbers, the calibration breakdown with raw / Platt / isotonic Brier,
 the per-run hyperparameter table, and a five-seed sensitivity check on
-a legacy mixed-protocol pair will be released upon acceptance.
+a legacy mixed-protocol pair are available in the release repository.
 
 \subsection{Headline Ablation: CNN vs Hybrid at 64/96/128}
 \label{sec:headline}
@@ -374,8 +374,7 @@ specification in Section~\ref{sec:rendering}. The penalty filter and
 the two architectures handled resolution changes correctly:
 \texttt{AdaptiveAvgPool2d} in the CNN and a dynamically-sliced
 positional embedding in the hybrid both adapt automatically to the
-input size. The full audit log, including the visualization that motivated the $\sigma$ fix, will be released alongside the code upon
-acceptance.
+input size. The full audit log, including the visualization that motivated the $\sigma$ fix, is available in the release repository.
 
 \subsection{$2{\times}2$ $\sigma\times$Penalty Ablation}
 \label{sec:2x2}
@@ -482,7 +481,7 @@ F1 (val-best) $0.0010$--$0.0053$, and Platt Brier $0.0002$--$0.0007$.
 PR-AUC seed std is therefore comparable in magnitude to typical
 improvements claimed in image-based xG comparisons; we recommend a
 three-seed minimum for any such comparison. A five-seed sensitivity on
-a legacy mixed-protocol pair will be released upon acceptance.
+a legacy mixed-protocol pair is available in the release repository.
 
 \section{Discussion}
 \label{sec:discussion}
@@ -543,18 +542,15 @@ xG-CNN replication under our protocol.
 % Acknowledgements (optional, after notification)
 % ============================================================
 \subsubsection*{Reproducibility.}
-A release repository has been prepared at
-\url{https://github.com/mburkay/image-xg-cnn-transformer} and will
-be made public upon acceptance. It contains the source code, splits,
+The release repository is available at
+\url{https://github.com/mburkay/image-xg-cnn-transformer}. It contains the source code, splits,
 the paper \LaTeX{} source, and the supplementary documentation: the
 full hyperparameter table, the five-seed sensitivity on the legacy
 mixed-protocol pair, the $2{\times}2$ ablation derivation, and the
 rendering-protocol audit log. The 38 model checkpoints
 (${\approx}\,600$\,MB) and the rendered image datasets will be
 deposited on a public archive (Zenodo or equivalent) upon
-acceptance, with the DOI added to the repository README. Reviewers
-who would like early access to the supplementary material before
-acceptance may request it through the workshop submission system.
+acceptance, with the DOI added to the repository README.
 
 % ============================================================
 % REFERENCES (unlimited length per MLSA 2026 CFP)
