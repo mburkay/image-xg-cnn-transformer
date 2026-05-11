@@ -4,7 +4,7 @@
 > submission (Springer LNCS, 9 content pages + unlimited references). The
 > 9-page main paper references this document by URL for: full per-cell
 > tables with mean ± std, sigma sweep details, the 2×2 σ × penalty
-> ablation derivation, bug-triage history, and any SUPERSEDED
+> ablation derivation, rendering-protocol audit history, and any SUPERSEDED
 > mixed-protocol results. Sections marked `[SUPERSEDED — mixed protocol]`
 > are kept for the narrative arc only and are not cited in the main paper.
 
@@ -265,11 +265,11 @@ Interpretation:
 - Because resolution and penalty filtering changed together, the next diagnostic
   should isolate them: 64x64 no-penalty and/or 128x128 with penalties.
 
-## Bug Triage And Re-Render
+## Rendering Protocol Audit And Re-Render
 
 The mixed 128 result (small ROC-AUC gain, PR-AUC drop) triggered a triage of
 three suspected bugs before running more ablations. Diagnostic script:
-`scripts/diagnostics_bug_triage.py`. Visual diagnostic figure:
+`scripts/diagnostics_rendering_protocol.py`. Visual diagnostic figure:
 `outputs/figures/bug2_sigma_comparison.png`.
 
 ### Bug 1 — Penalty filter (false alarm)

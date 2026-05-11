@@ -361,7 +361,7 @@ resolution and is a hidden hyperparameter that materially affects
 PR-AUC.
 
 \subsection{Rendering Protocol Audit}
-\label{sec:bug-triage}
+\label{sec:rendering-audit}
 
 Before settling on the controlled rendering protocol, we audited three
 candidate sources of cross-resolution inconsistency: the penalty
@@ -374,8 +374,7 @@ specification in Section~\ref{sec:rendering}. The penalty filter and
 the two architectures handled resolution changes correctly:
 \texttt{AdaptiveAvgPool2d} in the CNN and a dynamically-sliced
 positional embedding in the hybrid both adapt automatically to the
-input size. The full audit log, including the visualization that
-prompted the $\sigma$ fix, will be released alongside the code upon
+input size. The full audit log, including the visualization that motivated the $\sigma$ fix, will be released alongside the code upon
 acceptance.
 
 \subsection{$2{\times}2$ $\sigma\times$Penalty Ablation}

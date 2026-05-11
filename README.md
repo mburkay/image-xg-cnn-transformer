@@ -151,7 +151,7 @@ StatsBomb open-data clone.
 │   ├── 02_build_images.py
 │   ├── 03_train.py
 │   ├── 04_evaluate.py
-│   ├── diagnostics_bug_triage.py
+│   ├── diagnostics_rendering_protocol.py
 │   ├── figure_*.py             # four paper-figure regeneration scripts
 │   └── orchestrate_*.sh        # three multi-run orchestrators
 ├── src/xg_project/             # importable Python package
