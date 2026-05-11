@@ -1,0 +1,59 @@
+# --- StatsBomb open-data clone (download separately; see README) ---
+open-data/
+
+# --- Generated data + model artefacts (~600 MB; see README) ---
+data/
+outputs/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.coverage
+htmlcov/
+
+# --- Logs and temp ---
+*.log
+/tmp/
+
+# --- macOS / editors ---
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# --- Secrets and local config ---
+.env
+.env.local
+secrets/
+*.pem
+*.key
+
+# --- LaTeX build (paper/.gitignore handles its own subtree but mirror here for safety) ---
+paper/llncs.cls
+paper/splncs04.bst
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.synctex.gz
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.run.xml
+paper/*.bcf
+paper/main.pdf

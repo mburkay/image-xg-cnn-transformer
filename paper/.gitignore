@@ -1,0 +1,19 @@
+# Springer LNCS files (download separately, do not commit)
+llncs.cls
+splncs04.bst
+
+# LaTeX build artefacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.run.xml
+*.bcf
+
+# Build output
+main.pdf

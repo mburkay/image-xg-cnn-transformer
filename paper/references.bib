@@ -1,0 +1,156 @@
+% ============================================================
+% MLSA 2026 paper references (Springer LNCS, splncs04 style)
+% ============================================================
+
+% ------------------------------------------------------------
+% Primary image-based xG baseline
+% ------------------------------------------------------------
+@techreport{matteotti2024xgcnn,
+  author       = {Matteotti, Matteo and Sotudeh, Hadi},
+  title        = {The Power of Pixels: Exploring the Potential of {CNN}s
+                  for Expected Goals (xG) in Football},
+  institution  = {ResearchGate technical report},
+  year         = {2024},
+  month        = jul,
+  doi          = {10.13140/RG.2.2.14691.98080},
+  url          = {https://doi.org/10.13140/RG.2.2.14691.98080},
+  note         = {Code: \url{https://github.com/mttmtt31/xg-cnn}}
+}
+
+% ------------------------------------------------------------
+% Earlier image-based xG
+% ------------------------------------------------------------
+@inproceedings{wagenaar2017xg,
+  author    = {Wagenaar, Martijn and Okafor, Emmanuel and Frencken, Wouter
+               and Wiering, Marco A.},
+  title     = {Using Deep Convolutional Neural Networks to Predict Goal-Scoring
+               Opportunities in Soccer},
+  booktitle = {Proceedings of the 6th International Conference on Pattern
+               Recognition Applications and Methods (ICPRAM)},
+  year      = {2017},
+  pages     = {448--455}
+}
+
+% ------------------------------------------------------------
+% Attention in football (different modality)
+% ------------------------------------------------------------
+@inproceedings{xu2025skorxg,
+  author    = {Xu, Yizhou and Bretzner, Lars and Wang, Tiesheng and Maki, Atsuto},
+  title     = {{Skor-xG: SKeleton-ORiented Expected Goal Estimation in Soccer}},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and
+               Pattern Recognition Workshops (CVPRW) -- CVSports},
+  year      = {2025},
+  pages     = {6013--6023}
+}
+
+% ------------------------------------------------------------
+% Tabular xG baselines
+% ------------------------------------------------------------
+@article{anzer2021xg,
+  author  = {Anzer, Gabriel and Bauer, Pascal},
+  title   = {A Goal Scoring Probability Model for Shots Based on Synchronized
+             Positional and Event Data in Football (Soccer)},
+  journal = {Frontiers in Sports and Active Living},
+  year    = {2021},
+  volume  = {3},
+  pages   = {624475}
+}
+
+% ------------------------------------------------------------
+% Expected Possession Value / SoccerMap (related, different problem)
+% ------------------------------------------------------------
+@article{fernandez2021epv,
+  author  = {Fern{\'a}ndez, Javier and Bornn, Luke and Cervone, Daniel},
+  title   = {A framework for the fine-grained evaluation of the
+             instantaneous expected value of soccer possessions},
+  journal = {Machine Learning},
+  year    = {2021},
+  volume  = {110},
+  number  = {6},
+  pages   = {1389--1427},
+  doi     = {10.1007/s10994-021-05989-6}
+}
+
+% ------------------------------------------------------------
+% Attention rollout (used by F3)
+% ------------------------------------------------------------
+@inproceedings{abnar2020rollout,
+  author    = {Abnar, Samira and Zuidema, Willem},
+  title     = {Quantifying Attention Flow in Transformers},
+  booktitle = {Proceedings of the 58th Annual Meeting of the Association for
+               Computational Linguistics (ACL)},
+  year      = {2020},
+  pages     = {4190--4197},
+  doi       = {10.18653/v1/2020.acl-main.385}
+}
+
+% ------------------------------------------------------------
+% Calibration (Platt scaling, isotonic regression)
+% ------------------------------------------------------------
+@incollection{platt1999scaling,
+  author    = {Platt, John},
+  title     = {Probabilistic outputs for support vector machines and
+               comparisons to regularized likelihood methods},
+  booktitle = {Advances in Large Margin Classifiers},
+  publisher = {MIT Press},
+  year      = {1999},
+  pages     = {61--74}
+}
+
+@inproceedings{zadrozny2002transforming,
+  author    = {Zadrozny, Bianca and Elkan, Charles},
+  title     = {Transforming classifier scores into accurate multiclass
+               probability estimates},
+  booktitle = {Proceedings of the 8th ACM SIGKDD International Conference on
+               Knowledge Discovery and Data Mining},
+  year      = {2002},
+  pages     = {694--699}
+}
+
+% ------------------------------------------------------------
+% PyTorch / training stack
+% ------------------------------------------------------------
+@inproceedings{paszke2019pytorch,
+  author    = {Paszke, Adam and others},
+  title     = {{PyTorch}: An Imperative Style, High-Performance Deep
+               Learning Library},
+  booktitle = {Advances in Neural Information Processing Systems 32 (NeurIPS)},
+  year      = {2019},
+  pages     = {8024--8035}
+}
+
+@inproceedings{loshchilov2019adamw,
+  author    = {Loshchilov, Ilya and Hutter, Frank},
+  title     = {Decoupled Weight Decay Regularization},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2019}
+}
+
+% ------------------------------------------------------------
+% Vision Transformers (for related work)
+% ------------------------------------------------------------
+@inproceedings{vaswani2017attention,
+  author    = {Vaswani, Ashish and others},
+  title     = {Attention Is All You Need},
+  booktitle = {Advances in Neural Information Processing Systems 30 (NeurIPS)},
+  year      = {2017},
+  pages     = {5998--6008}
+}
+
+@inproceedings{dosovitskiy2021vit,
+  author    = {Dosovitskiy, Alexey and others},
+  title     = {An Image is Worth 16x16 Words: Transformers for Image
+               Recognition at Scale},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2021}
+}
+
+% ------------------------------------------------------------
+% StatsBomb open-data
+% ------------------------------------------------------------
+@misc{statsbomb_opendata,
+  author       = {{StatsBomb}},
+  title        = {StatsBomb Open Data},
+  howpublished = {\url{https://github.com/statsbomb/open-data}},
+  year         = {2024}
+}
