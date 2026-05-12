@@ -4,7 +4,7 @@ Reference implementation and reproducibility artefacts for the paper
 
 > **Spatial Resolution and Token Count Matter: A CNN+Transformer Hybrid
 > for Image-Based Expected Goals**
-> Mustafa Burkay Özdemir. MLSA 2026 (under review).
+> Mustafa Burkay Özdemir and Nejat Yumuşak. MLSA 2026 (under review).
 
 The paper studies image-based Expected Goals (xG) on StatsBomb shot
 freeze frames. The main contribution is a controlled six-cell ablation
@@ -186,7 +186,7 @@ is not redistributed here; it is downloaded separately from Springer
 
 ```bibtex
 @inproceedings{ozdemir2026imagexg,
-  author    = {{\"O}zdemir, Mustafa Burkay},
+  author    = {{\"O}zdemir, Mustafa Burkay and Yumu{\c{s}}ak, Nejat},
   title     = {Spatial Resolution and Token Count Matter:
                A {CNN+Transformer} Hybrid for Image-Based Expected Goals},
   booktitle = {Proceedings of the 13th Workshop on Machine Learning and
