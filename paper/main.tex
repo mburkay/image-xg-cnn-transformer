@@ -50,10 +50,12 @@ CNN-style architectures. We add a CNN+Transformer hybrid and ask
 under what conditions attention helps.
 Under a strictly controlled rendering protocol (sigma specified in
 pitch-coordinate units, penalty-excluded, four channels: attackers,
-defenders, goalkeeper, shooter), a Hybrid CNN+Transformer at
-$128{\times}128$ outperforms the $64{\times}64$ CNN baseline on every
-headline metric across three training seeds: ROC-AUC $+0.003$,
-PR-AUC $+0.014$, F1 $+0.006$, Platt Brier $-0.001$. The lift grows
+defenders, goalkeeper, shooter), the Hybrid CNN+Transformer at
+$128{\times}128$ outperforms the same-resolution pure CNN on every
+headline metric across three training seeds: ROC-AUC $+0.004$,
+PR-AUC $+0.035$, F1 $+0.009$, Platt Brier $-0.001$. The lift over
+the lower-resolution CNN-64 baseline is smaller but consistent
+(ROC-AUC $+0.003$, PR-AUC $+0.014$). The lift grows
 with transformer token count, and pure-CNN PR-AUC degrades
 monotonically with resolution while the hybrid recovers at 64 tokens.
 A $2{\times}2$ $\sigma{\times}$\,penalty ablation shows that penalty
@@ -298,7 +300,9 @@ a legacy mixed-protocol pair are available in the release repository.
 \caption{Controlled six-cell headline ablation
 ($\sigma_{\text{pu}}=2.0$, penalty-excluded, $n{=}3$ seeds per cell;
 test split, validation-best checkpoint).
-\textbf{Hybrid 128 outperforms CNN 64 on every headline metric.}}
+\textbf{At matched resolution, Hybrid 128 outperforms CNN 128 on every
+headline metric; the same-resolution PR-AUC gain ($+0.035$) is the
+largest effect.}}
 \label{tab:headline}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lcccccc}
@@ -316,14 +320,15 @@ CNN     & 128 & 64 & $0.7871\pm0.0031$ & $0.3287\pm0.0044$ & $0.3985\pm0.0053$ &
 }
 \end{table}
 
-Table~\ref{tab:headline} reports the controlled six-cell ablation.
-Hybrid 128 outperforms CNN 64 on every headline metric: ROC-AUC
-$+0.003$, PR-AUC $+0.014$, F1 (val-best) $+0.006$, Platt Brier
-$-0.001$. The PR-AUC and Platt-Brier gaps exceed the observed
-training-seed variability in their respective columns by several
-multiples; F1 (val-best) shows a smaller gain of the same order as
-the F1 seed standard deviations; the ROC-AUC gap is modest but
-exceeds the larger of the two ROC-AUC standard deviations.
+Table~\ref{tab:headline} reports the controlled six-cell ablation. At
+matched resolution, Hybrid 128 outperforms CNN 128 on every headline
+metric: ROC-AUC $+0.004$, PR-AUC $+0.035$, F1 (val-best) $+0.009$,
+Platt Brier $-0.001$. The same-resolution PR-AUC gap is the largest
+effect in the table and exceeds the observed seed variability by
+several multiples. As a more conservative cross-resolution check,
+Hybrid 128 also beats the CNN-64 baseline on every metric (ROC-AUC
+$+0.003$, PR-AUC $+0.014$, F1 $+0.006$, Platt Brier $-0.001$), with
+PR-AUC and Brier still exceeding seed variability.
 
 The central observation is the contrast between the two columns at
 matched $\sigma_{\text{pu}}=2.0$. Pure-CNN test PR-AUC degrades
