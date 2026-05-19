@@ -79,14 +79,17 @@ pitch-unit sigma.
 Expected Goals (xG) is the per-shot probability of scoring and the
 most widely used probabilistic shot-quality metric in football
 analytics. Tabular xG models with hand-engineered features (shot
-location, body part, assist type, play pattern) dominate practice and
-reach validation AUC in the $0.80$--$0.88$
-range~\cite{anzer2021xg}, but they cannot read the spatial context
-around the shooter: defender pressure, keeper position, and the
-geometry of the goal mouth at the moment of the shot. Image-based xG
-addresses this gap by rendering the StatsBomb shot freeze-frame as a
-top-down image and letting a vision model learn from spatial layout
-directly~\cite{wagenaar2017xg,matteotti2024xgcnn}.
+location, body part, assist type, play pattern) dominate practice;
+Anzer and Bauer report AUC values up to approximately $0.83$ using
+synchronized positional and event data~\cite{anzer2021xg}. Such
+models encode spatial structure through engineered features rather
+than exposing the raw freeze-frame geometry directly to the model.
+Image-based xG addresses this gap by rendering the StatsBomb shot
+freeze-frame as a top-down image and letting a vision model learn
+the spatial layout directly. Earlier CNN work used top-down position
+images for goal-scoring opportunity prediction~\cite{wagenaar2017xg};
+xG-CNN later applied CNNs directly to image-based xG from StatsBomb
+freeze frames~\cite{matteotti2024xgcnn}.
 
 Vision Transformers and CNN+Transformer hybrids dominate generic image
 recognition~\cite{vaswani2017attention,dosovitskiy2021vit}, yet to our
