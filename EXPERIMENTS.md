@@ -1014,8 +1014,8 @@ Cell labels in the codebase:
 
 Paper implications:
 
-- CLAIMS.md C5 (the "penalty bias" claim) has been rewritten from a
-  single-variable to a two-variable framing.
+- The "penalty bias" claim has been rewritten from a single-variable
+  to a two-variable framing.
 - The Limitations note that the controlled-vs-legacy comparison changed
   two variables at once is now resolved: we have the 2×2 numbers to
   report the per-variable effects with interaction.
