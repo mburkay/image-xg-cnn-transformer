@@ -337,7 +337,7 @@ immediately collapsed to a single 256-d vector. The hybrid, by
 contrast, recovers at 64 tokens ($0.363$). Figure~\ref{fig:token-sweep}
 shows that the hybrid's lift over the same-resolution CNN grows with
 token count on ROC-AUC, F1, and Brier; the PR-AUC delta is largest at
-64 tokens ($+0.034$). We interpret this as evidence that the
+64 tokens ($+0.035$). We interpret this as evidence that the
 transformer's value on this dataset is conditional on having enough
 tokens to attend over.
 
@@ -529,8 +529,9 @@ strict replication under our protocol is future work.
 \label{sec:conclusion}
 
 Under a strictly controlled rendering protocol, a CNN+Transformer
-hybrid at $128{\times}128$ outperforms a $64{\times}64$ CNN baseline
-on every headline metric for image-based Expected Goals. The lift is
+hybrid at $128{\times}128$ outperforms the same-resolution CNN on
+every headline metric and also exceeds the lower-resolution CNN-64
+baseline. The lift is
 conditional on transformer token count, and the central observation
 is that pure CNN PR-AUC degrades monotonically with input resolution
 while the hybrid recovers at 64 tokens. We argue that the rendering
