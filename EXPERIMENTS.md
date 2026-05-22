@@ -910,7 +910,7 @@ Honest interpretation under the controlled protocol:
   strictly better than CNN 64 on every headline metric (ROC-AUC +0.0026,
   PR-AUC +0.0143, F1 +0.0055, Platt Brier -0.0011).
 - The token-sweep Hybrid - CNN PR-AUC delta is non-monotonic in absolute
-  terms (+0.011 → +0.005 → +0.034) but the lift is unambiguously largest at
+  terms (+0.011 → +0.005 → +0.035) but the lift is unambiguously largest at
   64 tokens. This pattern is consistent with "transformer's value scales
   with token count, with a middle-resolution dip that the controlled
   experiment does not explain". The ROC-AUC, F1, and Brier deltas are
