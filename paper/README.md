@@ -17,9 +17,7 @@ This directory contains the LaTeX source for the MLSA 2026 submission:
 ```
 paper/
 ├── main.tex              # Full first-draft LaTeX source (LNCS, 9 content pages on A4)
-├── references.bib        # All citations resolved; Wagenaar 2017 ICPRAM page
-│                         # numbers to re-verify against the primary record
-│                         # before camera-ready
+├── references.bib        # All citations resolved with DOIs
 ├── figures/
 │   ├── F1_token_sweep.png       # Main-paper figure, Section 3.1 (headline)
 │   ├── F2_calibration.png       # Main-paper figure, Section 3.4 (Additional Analyses)
@@ -99,6 +97,4 @@ from the paper by URL.
 
 - [ ] Author read-through pass (abstract through conclusion) for prose and emphasis.
 - [ ] (Optional) restructure the Introduction "Positioning" paragraph or apply `\sloppypar` to clear the 8.18 pt overfull.
-- [ ] Verify the ICPRAM 2017 page numbers in the Wagenaar entry against the primary record before camera-ready.
 - [ ] Run `latexmk -pdf main` one final time on a clean tree just before CMT upload.
-- [ ] Flip the repository to public after acceptance (`gh repo edit mburkay/image-xg-cnn-transformer --visibility public`).

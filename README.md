@@ -87,7 +87,7 @@ chain together the headline six-cell ablation, the 2×2 σ×penalty
 ablation, and the controlled 64-cell re-render. They write per-run
 output to `outputs/models/` and a log to `/tmp/*.log`.
 
-`scripts/figure_*.py` regenerate the four paper-grade figures
+`scripts/figure_*.py` regenerate the paper and supplementary figures
 (token sweep, calibration reliability, attention rollout, training
 trajectories) from the per-run checkpoints and eval JSONs.
 
